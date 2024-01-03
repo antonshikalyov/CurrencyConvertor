@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ConvertingCurrentsComponent } from './converting-currents/converting-currents.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderCurrencyComponent } from './header-currency/header-currency.component';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';

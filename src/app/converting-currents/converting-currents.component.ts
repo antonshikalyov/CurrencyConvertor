@@ -34,16 +34,14 @@ export class ConvertingCurrentsComponent {
     {value: 'GBP', viewValue: 'GBP'},
   ];
 
-  convertCurrencyFirst(i?: number) {
+  convertCurrencyFirst(i: number) {
     var preResult: string = "";
     var logic: number = 0;
     preResult = this.selectedValueFirst + this.selectedValueSecond;
     console.log(i)
     if (i == 1) {
-      // preResult = this.selectedValueFirst + this.selectedValueSecond;
       logic = 1;
     } else {
-      // preResult = this.selectedValueSecond + this.selectedValueFirst;
       logic = 2;
     }
     console.log(preResult);
@@ -112,7 +110,6 @@ export class ConvertingCurrentsComponent {
         logic == 1 ? this.secondInput = (GBPtoUAH / this.USDtoUAH).toFixed(2) 
         : this.firstInput = (USDtoUAH / this.GBPtoUAH).toFixed(2);
       break;
-
 
       case ("USDUSD"):
         logic==1 ? this.secondInput = this.firstInput : this.firstInput = this.secondInput;
