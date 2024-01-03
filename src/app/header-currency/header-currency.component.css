@@ -1,0 +1,9 @@
+.currency-block {
+    display: flex;
+    background-color: #373e45;
+}
+
+.currency {
+    padding: 0 1em;
+    color: white;
+}

@@ -1,0 +1,26 @@
+/* .mat-mdc-text-field-wrapper {
+    width: 70% !important;
+} */
+.mat-mdc-form-field-infix {
+    width: 8em !important;
+}
+
+.inp-field {
+    font-size: 1.5em;
+    height: 2em;
+    border-radius: 0.2em;
+    border-color: transparent;
+    background-color: whitesmoke;
+    width: 8em;
+}
+
+.margin-field {
+    margin: 0 1em;
+}
+.container {
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
