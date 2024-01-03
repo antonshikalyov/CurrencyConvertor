@@ -7,3 +7,11 @@
     padding: 0 1em;
     color: white;
 }
+
+.uah-currency {
+    color: greenyellow;
+}
+
+.other-currency {
+    color: red;
+}

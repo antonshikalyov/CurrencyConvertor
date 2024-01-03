@@ -9,4 +9,5 @@ export class HeaderCurrencyComponent {
   @Input() USDtoUAH: any;
   @Input() EURtoUAH: any;
   @Input() USDtoEUR: any;
+  @Input() GBPtoUAH: any;
 }
