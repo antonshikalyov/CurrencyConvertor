@@ -2,30 +2,23 @@
 
 <div class="container" style="display: flex;">
   <input type="text" [(ngModel)]="firstInput" class="inp-field margin-field" (input)="convertCurrencyFirst(1)">
-
   <div class="margin-field">
-  <mat-form-field>
-    <mat-label>$</mat-label>
-    <mat-select (openedChange)="convertCurrencyFirst(2)" [(ngModel)]="selectedValueFirst" name="currency">
-        <mat-option *ngFor="let item of currencies" [value]="item.value">{{item.viewValue}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>$</mat-label>
+      <mat-select (openedChange)="convertCurrencyFirst(2)" [(ngModel)]="selectedValueFirst" name="currency">
+          <mat-option *ngFor="let item of currencies" [value]="item.value">{{item.viewValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
-  <div style="display: flex;">
-    <input type="text" [(ngModel)]="secondInput" (input)="convertCurrencyFirst(2)" class="inp-field margin-field">
-
-    <div class="margin-field" >
-      <mat-form-field>
-        <mat-label>$</mat-label>
-        <mat-select (openedChange)="convertCurrencyFirst(1)" [(ngModel)]="selectedValueSecond" name="currency">
-            <mat-option *ngFor="let item of currencies" [value]="item.value">{{item.viewValue}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-  <div>
-  </div>
+  <input type="text" [(ngModel)]="secondInput" (input)="convertCurrencyFirst(2)" class="inp-field margin-field">
+  <div class="margin-field" >
+    <mat-form-field>
+      <mat-label>$</mat-label>
+      <mat-select (openedChange)="convertCurrencyFirst(1)" [(ngModel)]="selectedValueSecond" name="currency">
+          <mat-option *ngFor="let item of currencies" [value]="item.value">{{item.viewValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 </div>
 
