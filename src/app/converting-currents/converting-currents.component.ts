@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpClientModule} from "@angular/common/http";
+import { HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-converting-currents',
@@ -9,119 +9,99 @@ import { HttpClient, HttpClientModule} from "@angular/common/http";
 
 
 export class ConvertingCurrentsComponent {
-  public uah: string [] = [];
-
-  USDtoUAH: any = 0;
-  EURtoUAH: any = 0;
-  GBPtoUAH: any = 0;
-  USDtoEUR: any = 0;
-  USDtoGBP: any = 0;  // Api don't provide information for it
-  EURtoGBP: any = 0;  // Api don't provide information for it
+  public USDtoUAH: number = 0;
+  public EURtoUAH: number = 0;
+  public GBPtoUAH: number = 0;
+  public USDtoEUR: number = 0;
+  public USDtoGBP: number = 0;  // Api don't provide information for it
+  public EURtoGBP: number = 0;  // Api don't provide information for it
 
   constructor(private http: HttpClient) {
 
   }
 
-  selectedValueFirst: any;
-  selectedValueSecond: any;
-  firstInput: any = 0;
-  secondInput: any = 0;
+  selectedValueFirst: string = '';
+  selectedValueSecond: string = '';
+  firstInput: number = 0;
+  secondInput: number = 0;
 
   currencies: Currency[] = [
-    {value: 'UAH', viewValue: 'UAH'},
-    {value: 'USD', viewValue: 'USD'},
-    {value: 'EUR', viewValue: 'EUR'},
-    {value: 'GBP', viewValue: 'GBP'},
+    {value: 'UAH'},
+    {value: 'USD'},
+    {value: 'EUR'},
+    {value: 'GBP'},
   ];
 
-  convertCurrencyFirst(i: number) {
-    var preResult: string = "";
-    var logic: number = 0;
-    preResult = this.selectedValueFirst + this.selectedValueSecond;
-    console.log(i)
-    if (i == 1) {
-      logic = 1;
-    } else {
-      logic = 2;
-    }
-    console.log(preResult);
+  parsFunction(num: number) {
+    return parseFloat((num).toFixed(2));
+  }
 
-    
-    switch (preResult) {
+  convertCurrencyFirst(logic: number) {
+    switch (this.selectedValueFirst + this.selectedValueSecond) {
       case ("UAHUSD"):
-        console.log((this.firstInput / this.USDtoUAH).toFixed(2) )
-        logic == 1 ? this.secondInput = (this.firstInput / this.USDtoUAH).toFixed(2) 
-                 : this.firstInput = (this.secondInput * this.USDtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput / this.USDtoUAH)
+                    : this.firstInput =  this.parsFunction(this.secondInput * this.USDtoUAH);
       break;
       case ("UAHEUR"):
-        logic == 1 ? this.secondInput = (this.firstInput / this.EURtoUAH).toFixed(2) 
-                 : this.firstInput = (this.secondInput * this.EURtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput / this.EURtoUAH)
+                    : this.firstInput = this.parsFunction(this.secondInput * this.EURtoUAH);
       break;
 
       case ("EURUSD"):
-        logic == 1 ? this.secondInput = (this.firstInput * this.USDtoEUR).toFixed(2) 
-                   : this.firstInput = (this.secondInput / this.USDtoEUR).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput * this.USDtoEUR)
+                    : this.firstInput = this.parsFunction(this.secondInput / this.USDtoEUR);
       break;
       case ("EURUAH"):
-        logic == 1 ? this.secondInput = (this.firstInput * this.EURtoUAH).toFixed(2) 
-        : this.firstInput = (this.secondInput / this.EURtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput * this.EURtoUAH)
+                    : this.firstInput = this.parsFunction(this.secondInput / this.EURtoUAH);
       break;
 
       case ("USDEUR"):
-        logic == 1 ? this.secondInput = (this.firstInput / this.USDtoEUR).toFixed(2) 
-                   : this.firstInput = (this.secondInput * this.USDtoEUR).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput / this.USDtoEUR)
+                    : this.firstInput = this.parsFunction(this.secondInput * this.USDtoEUR);
       break;
       case ("USDUAH"):
-        logic == 1 ? this.secondInput = (this.firstInput * this.USDtoUAH).toFixed(2) 
-                 : this.firstInput = (this.secondInput / this.USDtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput * this.USDtoUAH)
+                    : this.firstInput = this.parsFunction(this.secondInput / this.USDtoUAH);
       break;
 
       case ("GBPUAH"):
-        logic == 1 ? this.secondInput = (this.firstInput * this.GBPtoUAH).toFixed(2) 
-                 : this.firstInput = (this.secondInput / this.GBPtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput * this.GBPtoUAH)
+                    : this.firstInput = this.parsFunction(this.secondInput / this.GBPtoUAH);
       break;
       case ("UAHGBP"):
-        logic == 1 ? this.secondInput = (this.firstInput / this.GBPtoUAH).toFixed(2) 
-                 : this.firstInput = (this.secondInput * this.GBPtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput / this.GBPtoUAH)
+                    : this.firstInput = this.parsFunction(this.secondInput * this.GBPtoUAH);
       break;
       
       case ("GBPEUR"):
-        var GBPtoUAH = this.firstInput * this.GBPtoUAH;
-        var EURtoUAH = this.secondInput * this.EURtoUAH;
-        logic == 1 ? this.secondInput = (GBPtoUAH / this.EURtoUAH).toFixed(2) 
-                   : this.firstInput = (EURtoUAH / this.GBPtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput * this.GBPtoUAH / this.EURtoUAH)
+                    : this.firstInput = this.parsFunction(this.secondInput * this.EURtoUAH / this.GBPtoUAH);
       break;
       case ("EURGBP"):
-        var GBPtoUAH = this.secondInput * this.GBPtoUAH;
-        var EURtoUAH = this.firstInput * this.EURtoUAH;
-        logic == 1 ? this.secondInput = (EURtoUAH / this.GBPtoUAH).toFixed(2) 
-        : this.firstInput = (GBPtoUAH / this.EURtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput * this.EURtoUAH / this.GBPtoUAH)
+                    : this.firstInput = this.parsFunction(this.secondInput * this.GBPtoUAH / this.EURtoUAH);
       break;
       case ("USDGBP"):
-        var USDtoUAH = this.firstInput * this.USDtoUAH;
-        var GBPtoUAH = this.secondInput * this.GBPtoUAH;
-        logic == 1 ? this.secondInput = (USDtoUAH / this.GBPtoUAH).toFixed(2) 
-        : this.firstInput = (GBPtoUAH / this.USDtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput * this.USDtoUAH / this.GBPtoUAH)
+                    : this.firstInput = this.parsFunction(this.secondInput * this.GBPtoUAH / this.USDtoUAH);
       break;
       case ("GBPUSD"):
-        var USDtoUAH = this.secondInput * this.USDtoUAH;
-        var GBPtoUAH = this.firstInput * this.GBPtoUAH;
-        console.log(GBPtoUAH);
-        logic == 1 ? this.secondInput = (GBPtoUAH / this.USDtoUAH).toFixed(2) 
-        : this.firstInput = (USDtoUAH / this.GBPtoUAH).toFixed(2);
+        logic === 1 ? this.secondInput = this.parsFunction(this.firstInput * this.GBPtoUAH / this.USDtoUAH)
+                    : this.firstInput = this.parsFunction(this.secondInput * this.USDtoUAH / this.GBPtoUAH);
       break;
 
       case ("USDUSD"):
-        logic==1 ? this.secondInput = this.firstInput : this.firstInput = this.secondInput;
+        logic === 1 ? this.secondInput = this.firstInput : this.firstInput = this.secondInput;
       break;
       case ("EUREUR"):
-        logic==1 ? this.secondInput = this.firstInput : this.firstInput = this.secondInput;
+        logic === 1 ? this.secondInput = this.firstInput : this.firstInput = this.secondInput;
       break;
       case ("UAHUAH"):
-        logic==1 ? this.secondInput = this.firstInput : this.firstInput = this.secondInput;
+        logic === 1 ? this.secondInput = this.firstInput : this.firstInput = this.secondInput;
       break;
       case ("GBPGBP"):
-        logic==1 ? this.secondInput = this.firstInput : this.firstInput = this.secondInput;
+        logic === 1 ? this.secondInput = this.firstInput : this.firstInput = this.secondInput;
       break;
       default:
         break;
@@ -132,7 +112,6 @@ export class ConvertingCurrentsComponent {
   ngOnInit() {
     this.http.get("https://api.monobank.ua/bank/currency")
     .subscribe((data: any) => {
-      this.uah = data;
       this.USDtoUAH = data[0].rateSell;
       this.EURtoUAH = data[1].rateSell;
       this.USDtoEUR = data[2].rateSell;
@@ -143,5 +122,4 @@ export class ConvertingCurrentsComponent {
 
 interface Currency {
   value: string;
-  viewValue: string;
 }

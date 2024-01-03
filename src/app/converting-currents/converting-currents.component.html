@@ -6,7 +6,7 @@
     <mat-form-field>
       <mat-label>$</mat-label>
       <mat-select (openedChange)="convertCurrencyFirst(2)" [(ngModel)]="selectedValueFirst" name="currency">
-          <mat-option *ngFor="let item of currencies" [value]="item.value">{{item.viewValue}}</mat-option>
+          <mat-option *ngFor="let item of currencies" [value]="item.value">{{item.value}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -16,7 +16,7 @@
     <mat-form-field>
       <mat-label>$</mat-label>
       <mat-select (openedChange)="convertCurrencyFirst(1)" [(ngModel)]="selectedValueSecond" name="currency">
-          <mat-option *ngFor="let item of currencies" [value]="item.value">{{item.viewValue}}</mat-option>
+          <mat-option *ngFor="let item of currencies" [value]="item.value">{{item.value}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

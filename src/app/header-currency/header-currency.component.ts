@@ -6,8 +6,8 @@ import { Input, Component } from '@angular/core';
   styleUrls: ['./header-currency.component.css']
 })
 export class HeaderCurrencyComponent {
-  @Input() USDtoUAH: any;
-  @Input() EURtoUAH: any;
-  @Input() USDtoEUR: any;
-  @Input() GBPtoUAH: any;
+  @Input() USDtoUAH: number = 0;
+  @Input() EURtoUAH: number = 0;
+  @Input() USDtoEUR: number = 0;
+  @Input() GBPtoUAH: number = 0;
 }
